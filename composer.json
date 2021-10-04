@@ -1,6 +1,6 @@
 {
     "name": "ibnuhalimm/laravel-thai-bulk-sms",
-    "description": "Thai Bulk SMS SDK for Laravel",
+    "description": "Thai Bulk SMS Wrapper for Laravel",
     "keywords": [
         "ibnuhalimm",
         "laravel-thai-bulk-sms",
@@ -18,9 +18,9 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^7.3|^8.0",
         "illuminate/support": "^6.0|^7.0|^8.0",
-        "guzzlehttp/guzzle": "^7.0"
+        "guzzlehttp/guzzle": "^6.5.5|^7.0"
     },
     "require-dev": {
         "orchestra/testbench": "^6.0",
@@ -44,13 +44,15 @@
     "config": {
         "sort-packages": true
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "extra": {
         "laravel": {
             "providers": [
                 "Ibnuhalimm\\LaravelThaiBulkSms\\ServiceProvider"
             ],
             "aliases": {
-                "LaravelThaiBulkSms": "Ibnuhalimm\\LaravelThaiBulkSms\\Facade"
+                "ThaiBulkSms": "Ibnuhalimm\\LaravelThaiBulkSms\\Facade"
             }
         }
     }

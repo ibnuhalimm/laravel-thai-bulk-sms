@@ -2,6 +2,8 @@
 
 namespace Ibnuhalimm\LaravelThaiBulkSms;
 
+use Ibnuhalimm\LaravelThaiBulkSms\Exceptions\InvalidConfigException;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 
 class ServiceProvider extends IlluminateServiceProvider
@@ -11,36 +13,10 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function boot()
     {
-        /*
-         * Optional methods to load your package assets
-         */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'laravel-thai-bulk-sms');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-thai-bulk-sms');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
-
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('laravel-thai-bulk-sms.php'),
-            ], 'config');
-
-            // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-thai-bulk-sms'),
-            ], 'views');*/
-
-            // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/laravel-thai-bulk-sms'),
-            ], 'assets');*/
-
-            // Publishing the translation files.
-            /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/laravel-thai-bulk-sms'),
-            ], 'lang');*/
-
-            // Registering package commands.
-            // $this->commands([]);
+                __DIR__.'/../config/config.php' => config_path('thai-bulk-sms.php'),
+            ], 'thai-bulk-sms-config');
         }
     }
 
@@ -49,12 +25,33 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function register()
     {
-        // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel-thai-bulk-sms');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'thai-bulk-sms');
 
-        // Register the main class to use with the facade
-        $this->app->singleton('laravel-thai-bulk-sms', function () {
-            return new LaravelThaiBulkSms;
+        $this->app->bind(ThaiBulkSmsConfig::class, function () {
+            return new ThaiBulkSmsConfig($this->app['config']['thai-bulk-sms']);
+        });
+
+        $this->app->singleton(ThaiBulkSmsClient::class, function (Application $app) {
+            $config = $app->make(ThaiBulkSmsConfig::class);
+
+            if ($config->getApiKey() && $config->getSecretKey()) {
+                return new ThaiBulkSmsClient($config);
+            }
+
+            throw InvalidConfigException::missingApiAndSecretKey();
+        });
+
+        $this->app->singleton(ThaiBulkSmsChannel::class, function (Application $app) {
+            return new ThaiBulkSmsChannel(
+                $app->make(ThaiBulkSms::class)
+            );
+        });
+
+        // Register main class to use with the facade
+        $this->app->singleton(ThaiBulkSms::class, function (Application $app) {
+            return new ThaiBulkSms(
+                $app->make(ThaiBulkSmsClient::class),
+            );
         });
     }
 }

@@ -4,9 +4,6 @@ namespace Ibnuhalimm\LaravelThaiBulkSms;
 
 use Illuminate\Support\Facades\Facade as IlluminateFacade;
 
-/**
- * @see \Ibnuhalimm\LaravelThaiBulkSms\Skeleton\SkeletonClass
- */
 class Facade extends IlluminateFacade
 {
     /**
@@ -16,6 +13,6 @@ class Facade extends IlluminateFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'laravel-thai-bulk-sms';
+        return ThaiBulkSms::class;
     }
 }
