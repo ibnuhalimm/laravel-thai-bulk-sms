@@ -43,7 +43,7 @@ THAI_BULK_SECRET_KEY=
 
 ## Usage
 
-1. In the controller, you can directly use the `ThaiBulkSms` Facade:
+1. You can directly use the `ThaiBulkSms` Facade:
     ```php
     use ThaiBulkSms;
 
@@ -79,7 +79,7 @@ THAI_BULK_SECRET_KEY=
         public function toThaiBulkSms($notifiable)
         {
             return (new ThaiBulkSmsMessage())
-                ->message("Your OTP to complete the registration is {$notifiable->otp}");
+                ->message("Your OTP to complete the registration is {$this->otp}");
         }
     }
     ```
