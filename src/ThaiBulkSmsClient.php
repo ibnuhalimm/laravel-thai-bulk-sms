@@ -5,19 +5,17 @@ namespace Ibnuhalimm\LaravelThaiBulkSms;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\Handler\CurlHandler;
-use GuzzleHttp\HandlerStack;
 use Ibnuhalimm\LaravelThaiBulkSms\Exceptions\CouldNotSendNotification;
 
 class ThaiBulkSmsClient
 {
-    /** @var ThaiBulkSmsConfig */
+    /** @var ConfigRepository */
     private $config;
 
     /** @var GuzzleHttp/Client */
     private $http;
 
-    public function __construct(ThaiBulkSmsConfig $config)
+    public function __construct(ConfigRepository $config)
     {
         $this->config = $config;
 

@@ -27,12 +27,12 @@ class ThaiBulkSmsServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'thai-bulk-sms');
 
-        $this->app->bind(ThaiBulkSmsConfig::class, function () {
-            return new ThaiBulkSmsConfig($this->app['config']['thai-bulk-sms']);
+        $this->app->bind(ConfigRepository::class, function () {
+            return new ConfigRepository($this->app['config']['thai-bulk-sms']);
         });
 
         $this->app->singleton(ThaiBulkSmsClient::class, function (Application $app) {
-            $config = $app->make(ThaiBulkSmsConfig::class);
+            $config = $app->make(ConfigRepository::class);
 
             if ($config->getApiKey() && $config->getSecretKey()) {
                 return new ThaiBulkSmsClient($config);

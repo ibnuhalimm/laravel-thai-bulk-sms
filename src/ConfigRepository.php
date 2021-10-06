@@ -2,7 +2,7 @@
 
 namespace Ibnuhalimm\LaravelThaiBulkSms;
 
-class ThaiBulkSmsConfig
+class ConfigRepository
 {
     /** @var array $config */
     private $config;
