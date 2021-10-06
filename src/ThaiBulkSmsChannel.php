@@ -3,6 +3,7 @@
 namespace Ibnuhalimm\LaravelThaiBulkSms;
 
 use Ibnuhalimm\LaravelThaiBulkSms\Exceptions\CouldNotSendNotification;
+use Ibnuhalimm\LaravelThaiBulkSms\Services\ThaiBulkSms;
 use Illuminate\Notifications\Notification;
 
 class ThaiBulkSmsChannel

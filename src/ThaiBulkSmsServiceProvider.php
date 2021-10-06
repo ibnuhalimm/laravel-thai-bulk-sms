@@ -3,6 +3,8 @@
 namespace Ibnuhalimm\LaravelThaiBulkSms;
 
 use Ibnuhalimm\LaravelThaiBulkSms\Exceptions\InvalidConfigException;
+use Ibnuhalimm\LaravelThaiBulkSms\Services\HttpClient;
+use Ibnuhalimm\LaravelThaiBulkSms\Services\ThaiBulkSms;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,11 +33,11 @@ class ThaiBulkSmsServiceProvider extends ServiceProvider
             return new ConfigRepository($this->app['config']['thai-bulk-sms']);
         });
 
-        $this->app->singleton(ThaiBulkSmsClient::class, function (Application $app) {
+        $this->app->singleton(HttpClient::class, function (Application $app) {
             $config = $app->make(ConfigRepository::class);
 
             if ($config->getApiKey() && $config->getSecretKey()) {
-                return new ThaiBulkSmsClient($config);
+                return new HttpClient($config);
             }
 
             throw InvalidConfigException::missingApiAndSecretKey();
@@ -50,7 +52,7 @@ class ThaiBulkSmsServiceProvider extends ServiceProvider
         // Register main class to use with the facade
         $this->app->singleton(ThaiBulkSms::class, function (Application $app) {
             return new ThaiBulkSms(
-                $app->make(ThaiBulkSmsClient::class),
+                $app->make(HttpClient::class),
             );
         });
     }

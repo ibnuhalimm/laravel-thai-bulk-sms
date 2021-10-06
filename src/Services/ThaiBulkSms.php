@@ -1,19 +1,19 @@
 <?php
 
-namespace Ibnuhalimm\LaravelThaiBulkSms;
+namespace Ibnuhalimm\LaravelThaiBulkSms\Services;
 
 class ThaiBulkSms
 {
-    /** @var ThaiBulkSmsClient */
+    /** @var HttpClient */
     protected $client;
 
     /**
      * Create new instance.
      *
-     * @param  ThaiBulkSmsClient  $client
+     * @param  HttpClient  $client
      * @return void
      */
-    public function __construct(ThaiBulkSmsClient $client)
+    public function __construct(HttpClient $client)
     {
         $this->client = $client;
     }

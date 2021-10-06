@@ -2,7 +2,7 @@
 
 namespace Ibnuhalimm\LaravelThaiBulkSms\Facades;
 
-use Ibnuhalimm\LaravelThaiBulkSms\ThaiBulkSms as IbnuhalimmThaiBulkSms;
+use Ibnuhalimm\LaravelThaiBulkSms\Services\ThaiBulkSms as IbnuhalimmThaiBulkSms;
 use Illuminate\Support\Facades\Facade;
 
 /**
