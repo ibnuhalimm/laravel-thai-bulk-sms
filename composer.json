@@ -49,7 +49,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Ibnuhalimm\\LaravelThaiBulkSms\\ServiceProvider"
+                "Ibnuhalimm\\LaravelThaiBulkSms\\ThaiBulkSmsServiceProvider"
             ],
             "aliases": {
                 "ThaiBulkSms": "Ibnuhalimm\\LaravelThaiBulkSms\\Facades\\ThaiBulkSms"

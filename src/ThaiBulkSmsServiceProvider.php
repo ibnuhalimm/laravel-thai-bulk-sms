@@ -4,9 +4,9 @@ namespace Ibnuhalimm\LaravelThaiBulkSms;
 
 use Ibnuhalimm\LaravelThaiBulkSms\Exceptions\InvalidConfigException;
 use Illuminate\Foundation\Application;
-use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
-class ServiceProvider extends IlluminateServiceProvider
+class ThaiBulkSmsServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
