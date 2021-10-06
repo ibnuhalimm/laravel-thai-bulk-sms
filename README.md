@@ -31,7 +31,7 @@ composer require ibnuhalimm/laravel-thai-bulk-sms
 
 Optionally, you can publish the config file of this package with this command:
 ```bash
-php artisan vendor:publish --provider="Ibnuhalimm\LaravelThaiBulkSms\ServiceProvider"
+php artisan vendor:publish --provider="Ibnuhalimm\LaravelThaiBulkSms\ThaiBulkSmsServiceProvider"
 ```
 
 ## Setting up
@@ -43,9 +43,9 @@ THAI_BULK_SECRET_KEY=
 
 ## Usage
 
-1. You can directly use the `ThaiBulkSms` Facade:
+1. You can directly use the `ThaiBulkSms` Facade (the alias or class itself):
     ```php
-    use ThaiBulkSms;
+    use Ibnuhalimm\LaravelThaiBulkSms\Facades\ThaiBulkSms;
 
     // Send the sms to single recipient
     $phoneNumber = '+6612345678';
@@ -62,7 +62,7 @@ THAI_BULK_SECRET_KEY=
     ```
     The response format of this method will be like [Thai Bulk SMS API's Response](https://assets.thaibulksms.com/documents/ThaibulksmsAPIDocument_V2.0_EN.pdf).
 <br><br>
-2. Notifications.
+2. Notifications
     <br>Let's take a look at the implementation as Notifications Channel.
     ```php
     use Ibnuhalimm\LaravelThaiBulkSms\ThaiBulkSmsChannel;
@@ -91,7 +91,7 @@ THAI_BULK_SECRET_KEY=
         return $this->phone;
     }
     ```
-    or set the recipient mobile number directly to the notifiable instance
+    or set the recipient mobile number directly to the notifiable instance using `to` method
     ```php
     ...
     public function toThaiBulkSms($notifiable)
