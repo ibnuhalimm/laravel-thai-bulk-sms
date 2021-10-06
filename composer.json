@@ -52,7 +52,7 @@
                 "Ibnuhalimm\\LaravelThaiBulkSms\\ServiceProvider"
             ],
             "aliases": {
-                "ThaiBulkSms": "Ibnuhalimm\\LaravelThaiBulkSms\\Facade"
+                "ThaiBulkSms": "Ibnuhalimm\\LaravelThaiBulkSms\\Facades\\ThaiBulkSms"
             }
         }
     }
