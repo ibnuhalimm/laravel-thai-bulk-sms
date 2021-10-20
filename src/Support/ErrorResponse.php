@@ -1,5 +1,7 @@
 <?php
 
+namespace Ibnuhalimm\LaravelThaiBulkSms\Support;
+
 class ErrorResponse
 {
     public const NO_ERROR = 'NO_ERROR';
