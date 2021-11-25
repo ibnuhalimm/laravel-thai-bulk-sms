@@ -60,4 +60,14 @@ class ConfigRepository
     {
         return base64_encode($this->getApiKey() . ':' . $this->getSecretKey());
     }
+
+    /**
+     * Get sender name
+     *
+     * @return string
+     */
+    public function getSenderName()
+    {
+        return $this->config['sender'] ?? '';
+    }
 }

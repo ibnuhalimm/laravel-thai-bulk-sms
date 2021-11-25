@@ -35,10 +35,11 @@ php artisan vendor:publish --provider="Ibnuhalimm\LaravelThaiBulkSms\ThaiBulkSms
 ```
 
 ## Setting up
-Put your `API Key` and `Secret Key` to `.env` file:
+Put your `API Key`, `Secret Key`, and `THAI_BULK_SENDER` to `.env` file:
 ```bash
 THAI_BULK_API_KEY=
 THAI_BULK_SECRET_KEY=
+THAI_BULK_SENDER=
 ```
 
 ## Usage

@@ -30,6 +30,7 @@ class HttpClient
     {
         $formParams['msisdn'] = $mobileNumber;
         $formParams['message'] = $message;
+        $formParams['sender'] = $this->config->getSenderName();
 
         try {
             $response = $this->http->request('POST', '/sms', [
