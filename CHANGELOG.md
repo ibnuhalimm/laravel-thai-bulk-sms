@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to `laravel-thai-bulk-sms` will be documented in this file
 
+## 1.2.1 - 20220423
+- Laravel 9 support
+
 ## 1.2.0 - 20211125
 - Add `sender name` form data, fix `ERROR_SENDER` response. Update the [Setting Up](README.md#setting-up) section
 
